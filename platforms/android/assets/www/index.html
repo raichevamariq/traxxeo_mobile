@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+
+        <style>
+            #map {
+            height: 400px;
+            width: 100%;
+            }
+        </style>
+        <script type="text/javascript" src="cordova.js"></script>
+        <meta http-equiv="Content-Security-Policy" content="default-src *; script-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src *; style-src * 'unsafe-inline' ; media-src *;">
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/fontello.css">
+        <link rel="stylesheet" type="text/css" href="css/metro.css">
+        <link rel="stylesheet" type="text/css" href="css/fontello-embedded.css">
+        <title>Hello World</title>
+    </head>
+    <body>
+    <div id="login_page" style="display:none">
+    <div class="panel panel-default" style="margin-top:100px">
+
+        <div class="panel-body">
+            <div><img src="img/traxxeo.png" /></div>
+            <div class="form-group" style="width:200px">
+                <i class="icon-user"></i> <label for="username">Username:</label>
+
+               <input type="text" class="form-control" id="username" name="username"/>
+            </div>
+            <div class="form-group" style="width:200px">
+                <i class="icon-key"></i> <label for="password">Password:</label>
+               <input type="text" class="form-control" id="password" name="password"/>
+            </div>
+            <button class="btn-default" id="submit" >Sign in </button>
+        </div>
+    </div>
+
+    </div>
+
+    <div id="map"></div>
+
+</body>
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script>
+  console.log("gsfsfs");
+    $(document).ready(  function(){
+
+        if(storage.getItem("userId")!= "")
+         {
+         window.location.href="vehicle_list.html";
+            }
+        else {
+             $("#login_page").show();
+        }
+    });
+
+
+    </script>
+
+
+
+
+</html>

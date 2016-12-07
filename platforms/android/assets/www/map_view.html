@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/metro.css">
+    <link rel="stylesheet" type="text/css" href="css/fontello-embedded.css">
+    <title>Hello World</title>
+    <script type="text/javascript" src="cordova.js"></script>
+</head>
+<body>
+<div><button class="btn-danger" style="float:right"><i class="icon-logout" ></i></button></div>
+<hr size="5" >
+<div class="well" id="location_info">
+
+</div>
+<div  id="map" style="height:70%" ></div>
+</body>
+
+<script >
+
+function loadMap(){
+            alert("LQLQL");
+            $("#location_info").append('<div><h3>'+storage.getItem("address")+'</h3><h3>'+storage.getItem("event_date")+'</h3></div>');
+            var latitude =  storage.getItem("latitude");
+            var longitude = storage.getItem("longitude");
+           //var latitude = 50.010711669921875;
+          // var longitude = 5.71373987197876;
+            alert(latitude+" "+longitude);
+            var myLatLng = {lat:50.48794937133789, lng:4.753210067749023};
+
+             var map = new google.maps.Map(document.getElementById('map'), {
+                 zoom: 10,
+                center: myLatLng
+             });
+
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: storage.getItem("address")
+            });
+         }
+
+
+
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7sZq8iQnJPSjQMwcF2dSA-yxM5vu_RKk&callback=loadMap"></script>
+
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+</html>
