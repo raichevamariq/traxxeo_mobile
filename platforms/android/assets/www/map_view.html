@@ -28,24 +28,25 @@
     <script type="text/javascript" src="cordova.js"></script>
 </head>
 <body>
-<div><button class="btn-danger" style="float:right"><i class="icon-logout" ></i></button></div>
-<hr size="5" >
+<div id="top_page"></div>
 <div class="well" id="location_info">
 
 </div>
 <div  id="map" style="height:70%" ></div>
+<div id="btn-bar"></div>
 </body>
 
 <script >
 
 function loadMap(){
-            alert("LQLQL");
+            $("#top_page").load("template.html");
+            $("#btn-bar").load("button_bar.html");
             $("#location_info").append('<div><h3>'+storage.getItem("address")+'</h3><h3>'+storage.getItem("event_date")+'</h3></div>');
             var latitude =  storage.getItem("latitude");
             var longitude = storage.getItem("longitude");
            //var latitude = 50.010711669921875;
           // var longitude = 5.71373987197876;
-            alert(latitude+" "+longitude);
+
             var myLatLng = {lat:50.48794937133789, lng:4.753210067749023};
 
              var map = new google.maps.Map(document.getElementById('map'), {

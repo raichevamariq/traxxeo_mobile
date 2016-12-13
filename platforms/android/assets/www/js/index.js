@@ -27,7 +27,7 @@ var event_id  = storage.getItem("event_id");
 console.log("event_id is"+event_id);
     $.ajax({
 	                        method:"get",
-                            url:"http://192.168.20.116:8080/traxxeo/ShowDetails?event_id="+event_id+"&userId="+storage.getItem("userId"),
+                            url:"http://devmobile.traxxeo.com/servlet/showDetails?event_id="+event_id+"&userId="+storage.getItem("userId"),
                                     error:function(  jqXHR, textStatus,  errorThrown ){
 
                                     console.log(errorThrown);
@@ -44,7 +44,7 @@ console.log("event_id is"+event_id);
 
 
                         			}) .fail(function( jqXHR, textStatus ) {
-                                           alert( "134hj"+textStatus );
+
                                          });
 
 }
@@ -52,7 +52,7 @@ function loadVehicles(searchValue){
     console.log("FUNCTION LOADED");
 
     var vehicles;
-    var url = "http://192.168.20.116:8080/traxxeo/SearchVehicle?userId="+storage.getItem("userId")+"&searchValue="+searchValue;
+    var url = "http://devmobile.traxxeo.com/servlet/searchVehicle?userId="+storage.getItem("userId")+"&searchValue="+searchValue.toUpperCase();
     console.log("URL:"+url);
     $("#vehicle_list").html("");
 
@@ -69,7 +69,7 @@ function loadVehicles(searchValue){
                         				 var jsonData = JSON.parse(response);
                         				 $("#vehicles").append('<div class="list-group" id="vehicle_list" >');
                         				 for(var i=0;i<jsonData.length;i++){
-                        				$("#vehicle_list").append(' <div id="'+jsonData[i].id+'" class="list-group-item" style="witdh:70%" ><div style="background-color:#b6caea"> <icon class="icon-cab"></icon><span class="list-title">'+jsonData[i].name+'</span></div><div>'+jsonData[i].address+'</div><div style="display:none" class="'+jsonData[i].id+' buttons" style="margin-top:20px"><button  class="btn-success" data-event-id="'+jsonData[i].event_id+'">View details</button><button class="btn-danger" '+
+                        				$("#vehicle_list").append(' <div id="'+jsonData[i].id+'" class="list-group-item" style="witdh:70%" ><div style="background-color:#b6caea"> <icon class="glyphicon glyphicon-align-justify\"></icon><span class="list-title">'+jsonData[i].name+'</span></div><div>'+jsonData[i].address+'</div><div style="display:none" class="'+jsonData[i].id+' buttons" style="margin-top:20px"><button  class="btn-success" data-event-id="'+jsonData[i].event_id+'">View details</button><button class="btn-danger" '+
                         				  'data-date="'+jsonData[i].date+' " data-latitude="'+jsonData[i].latitude+'" data-longitude = "'+jsonData[i].longitude+'" data-address="'+jsonData[i].address+'">View on map</button></div></div>');
                                        }
                                         $(".list-group-item").on("click",function(){
@@ -83,7 +83,7 @@ function loadVehicles(searchValue){
                                         });
                                         $(".btn-success").on("click",function(){
                                             storage.setItem("event_id",$(this).attr("data-event-id"));
-                                            alert("The chosen event_id is"+storage.getItem("event_id"));
+
                                             window.location = "detail_view.html";
                         				});
                         				$(".btn-danger").on("click",function(){
@@ -99,7 +99,7 @@ function loadVehicles(searchValue){
                         				$("#vehicles").append("</div>");
 
                         			}) .fail(function( jqXHR, textStatus ) {
-                                           alert( "134hj"+textStatus );
+
                                          });
                           //|
 
@@ -116,7 +116,7 @@ var app = {
 
 
         $(document).on("click","#submit",function () {
-                        alert(navigator.onLine );
+
                         if(navigator.online == false){
 
                             alert("No internet connection.Please connect to the Internet");
@@ -128,16 +128,20 @@ var app = {
                 		$.ajax({
 
                 				method:"get",
-                            	url:"http://192.168.20.116:8080/traxxeo/LoginServlet?username="+$("#username").val()+"&password="+$("#password").val()
+                            	url:"http://devmobile.traxxeo.com/servlet/loginServlet?username="+$("#username").val()+"&password="+$("#password").val()
                     		}).done(function(response){
-                				if(response.length >0){
+                    		    if(response == "Incorrect"){
+                                            alert ("Invalid credentials");
+                                                }
+
+                				else{
                 				    storage.setItem("userId", response);
-                				     window.location.href="vehicle_list.html";
+                				     window.location.href="splash_screen.html";
                 				}
-                				else alert ("Invalid credentials");
+
 
                 			}) .fail(function( jqXHR, textStatus ) {
-                                   alert( "lala"+jqXHR );
+
                                  });
 
                     console.log("BITCH");

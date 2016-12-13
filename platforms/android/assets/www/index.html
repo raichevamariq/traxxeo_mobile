@@ -53,12 +53,12 @@
         <div class="panel-body">
             <div><img src="img/traxxeo.png" /></div>
             <div class="form-group" style="width:200px">
-                <i class="icon-user"></i> <label for="username">Username:</label>
+                <i class="glyphicon glyphicon-user"></i> <label for="username">Username:</label>
 
                <input type="text" class="form-control" id="username" name="username"/>
             </div>
             <div class="form-group" style="width:200px">
-                <i class="icon-key"></i> <label for="password">Password:</label>
+                <i class="glyphicon glyphicon-qrcode"></i> <label for="password">Password:</label>
                <input type="text" class="form-control" id="password" name="password"/>
             </div>
             <button class="btn-default" id="submit" >Sign in </button>
@@ -77,9 +77,9 @@
   console.log("gsfsfs");
     $(document).ready(  function(){
 
-        if(storage.getItem("userId")!= "")
+        if(storage.getItem("userId")!= "" && storage.getItem("userId")!= null )
          {
-         window.location.href="vehicle_list.html";
+         window.location.href="splash_screen.html";
             }
         else {
              $("#login_page").show();

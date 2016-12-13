@@ -28,15 +28,13 @@
     <script type="text/javascript" src="cordova.js"></script>
 </head>
 <body>
-<div><button id="btn-logout" style="float:right"><i class="icon-logout" ></i></button></div>
-<hr size="5" >
+<div id="top_page"></div>
 <div id="event-date" ></div>
-<hr>
 <div class="well" id="vehicle_block"></div>
 <div  id="vehicle_info">
 
 </div>
-
+<div id="btn-bar"></div>
 
 </body>
 
@@ -46,11 +44,8 @@
 
 
     window.onload = function(){
-             $("#btn-logout").click(function(){
-                storage.setItem("userId","");
-                window.location.href="index.html";
-
-            });
+            $("#top_page").load("template.html");
+            $("#btn-bar").load("button_bar.html");
              loadVehicleInfo();
     };
 
